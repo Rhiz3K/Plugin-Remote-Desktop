@@ -56,6 +56,15 @@ import {
   type GuacamoleFileStreamClient,
 } from "./guacamole-filesystem.ts";
 import { clampGuacamoleZoom, stepGuacamoleZoom } from "./guacamole-zoom.ts";
+import {
+  beginTwoFingerGesture,
+  displayOffsetInContainer,
+  measureTwoFingerTouches,
+  scrollForTwoFingerGesture,
+  updateTwoFingerGesture,
+  type GesturePoint,
+  type TwoFingerGestureState,
+} from "./guacamole-gestures.ts";
 import { createRdpReadyGate } from "./guacamole-ready.ts";
 import {
   remoteKeysym,
@@ -1001,28 +1010,75 @@ export const GuacamoleDisplay = forwardRef<
     if (!container || !isReady || (protocol !== "vnc" && protocol !== "ard"))
       return;
 
-    let pinchDistance = 0;
-    let pinchZoom = zoomRef.current;
-    const distance = (touches: TouchList) =>
-      Math.hypot(
-        touches[0].clientX - touches[1].clientX,
-        touches[0].clientY - touches[1].clientY,
+    let gesture: TwoFingerGestureState | null = null;
+    const measure = (touches: TouchList) =>
+      measureTwoFingerTouches(
+        touches[0],
+        touches[1],
+        container.getBoundingClientRect(),
       );
+    // Where the remote display sits in the container's scroll content. The
+    // displayRef wrapper is at least container-sized (min-w/h-full), so it
+    // always starts at the scroll origin; it is the Guacamole display element
+    // inside it that flex centering offsets while it is smaller.
+    const measureOffset = (): GesturePoint => {
+      const display = displayElementRef.current;
+      if (!display) return { x: 0, y: 0 };
+      return displayOffsetInContainer({
+        containerRect: container.getBoundingClientRect(),
+        displayRect: display.getBoundingClientRect(),
+        scrollLeft: container.scrollLeft,
+        scrollTop: container.scrollTop,
+      });
+    };
+    const beginGesture = (touches: TouchList) => {
+      gesture = beginTwoFingerGesture({
+        ...measure(touches),
+        zoom: zoomRef.current,
+        scrollLeft: container.scrollLeft,
+        scrollTop: container.scrollTop,
+        offset: measureOffset(),
+      });
+    };
     const onTouchStart = (event: TouchEvent) => {
-      if (event.touches.length !== 2) return;
+      if (event.touches.length !== 2) {
+        gesture = null;
+        return;
+      }
       event.preventDefault();
       event.stopPropagation();
-      pinchDistance = distance(event.touches);
-      pinchZoom = zoomRef.current;
+      beginGesture(event.touches);
     };
     const onTouchMove = (event: TouchEvent) => {
-      if (event.touches.length !== 2 || pinchDistance === 0) return;
+      if (event.touches.length !== 2) {
+        gesture = null;
+        return;
+      }
       event.preventDefault();
       event.stopPropagation();
-      applyZoom(pinchZoom * (distance(event.touches) / pinchDistance));
+      if (!gesture) {
+        beginGesture(event.touches);
+        return;
+      }
+      const current = measure(event.touches);
+      const update = updateTwoFingerGesture(gesture, current);
+      gesture = update.state;
+      // applyZoom resizes the display synchronously; measure the offset after
+      // it, since resizing can change whether the display is still centered.
+      if (update.zoom !== null) applyZoom(update.zoom);
+      const scroll = scrollForTwoFingerGesture(
+        gesture,
+        current,
+        update.zoom,
+        measureOffset(),
+      );
+      container.scrollLeft = scroll.scrollLeft;
+      container.scrollTop = scroll.scrollTop;
     };
-    const onTouchEnd = () => {
-      pinchDistance = 0;
+    const onTouchEnd = (event: TouchEvent) => {
+      // Lifting a third finger leaves two: restart so the view doesn't jump.
+      if (event.touches.length === 2) beginGesture(event.touches);
+      else gesture = null;
     };
 
     container.addEventListener("touchstart", onTouchStart, {
@@ -1034,10 +1090,12 @@ export const GuacamoleDisplay = forwardRef<
       capture: true,
     });
     container.addEventListener("touchend", onTouchEnd, { capture: true });
+    container.addEventListener("touchcancel", onTouchEnd, { capture: true });
     return () => {
       container.removeEventListener("touchstart", onTouchStart, true);
       container.removeEventListener("touchmove", onTouchMove, true);
       container.removeEventListener("touchend", onTouchEnd, true);
+      container.removeEventListener("touchcancel", onTouchEnd, true);
     };
   }, [applyZoom, connectionConfig.protocol, connectionConfig.type, isReady]);
 
