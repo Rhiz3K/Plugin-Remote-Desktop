@@ -1,0 +1,20 @@
+{
+ "base": {
+  "S1_pan_presses": 0,
+  "S2_drag_moves": 7,
+  "S3_tap_left_presses": 1,
+  "S4_backspace_downs": 1,
+  "S4_backspace_ups": 1,
+  "S5_touchpad_max_jump_px": 1228,
+  "S6_cancel_right_clicks": 1
+ },
+ "branch": {
+  "S1_pan_presses": 0,
+  "S2_drag_moves": 0,
+  "S3_tap_left_presses": 1,
+  "S4_backspace_downs": 6,
+  "S4_backspace_ups": 6,
+  "S5_touchpad_max_jump_px": 1,
+  "S6_cancel_right_clicks": 0
+ }
+}

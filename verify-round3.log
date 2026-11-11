@@ -1,0 +1,111 @@
+== MUTATION A: old src (8f42e6f) with new tests
+ ❯ |remote-desktop:frontend| tests/frontend/guacamole-soft-keyboard.test.ts (11 tests | 2 failed) 13ms
+     × replays each repeated keydown as an up+down pair and stays held 6ms
+     × sends one action per autorepeat of a held Backspace 1ms
+ ❯ |remote-desktop:frontend| tests/frontend/guacamole-pointer.test.ts (19 tests | 2 failed) 28ms
+     × never drags with a button the emulator held across a gesture 6ms
+       × does not drag with the click a pinch ended in 3ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  |remote-desktop:frontend| tests/frontend/guacamole-pointer.test.ts > createTouchGestureGate > never drags with a button the emulator held across a gesture
+ FAIL  |remote-desktop:frontend| tests/frontend/guacamole-pointer.test.ts > bindPointerInput > with the real touchscreen emulator > does not drag with the click a pinch ended in
+ FAIL  |remote-desktop:frontend| tests/frontend/guacamole-soft-keyboard.test.ts > createPressedKeyTracker > replays each repeated keydown as an up+down pair and stays held
+ FAIL  |remote-desktop:frontend| tests/frontend/guacamole-soft-keyboard.test.ts > createPressedKeyTracker > sends one action per autorepeat of a held Backspace
+ Test Files  2 failed (2)
+      Tests  4 failed | 26 passed (30)
+ 5 files changed, 317 insertions(+), 17 deletions(-)
+== MUTATION B: drop emulator.reset() only
+1
+      Tests  19 passed (19)
+== MUTATION C: drop gate defence only
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  |remote-desktop:frontend| tests/frontend/guacamole-pointer.test.ts > createTouchGestureGate > never drags with a button the emulator held across a gesture
+      Tests  1 failed | 18 passed (19)
+== MUTATION D: drop both
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  |remote-desktop:frontend| tests/frontend/guacamole-pointer.test.ts > createTouchGestureGate > never drags with a button the emulator held across a gesture
+ FAIL  |remote-desktop:frontend| tests/frontend/guacamole-pointer.test.ts > bindPointerInput > with the real touchscreen emulator > does not drag with the click a pinch ended in
+      Tests  2 failed | 17 passed (19)
+ 5 files changed, 317 insertions(+), 17 deletions(-)
+== 2026-11-11T17:43:07+01:00 verify on working tree (base 8f42e6f + round 3)
+== npm test
+
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+
+ Test Files  71 passed | 1 skipped (72)
+      Tests  604 passed | 1 skipped (605)
+   Start at  17:43:07
+   Duration  6.97s (transform 7.20s, setup 909ms, import 17.86s, tests 7.67s, environment 13.81s)
+
+TEST_RC=0
+== typecheck
+> @termix-plugin/remote-desktop@1.4.0 typecheck
+> tsc -p .
+
+TC_RC=0
+== format:check
+
+Checking formatting...
+All matched files use Prettier code style!
+FMT_RC=0
+== build
+> @termix-plugin/remote-desktop@1.4.0 build
+> termix-plugin build
+
+[patch-guacamole-common-js] Already patched
+[patch-guacamole-lite] Already patched
+built remote-desktop
+BUILD_RC=0
+== validate
+  warn  reads KUBERNETES_SERVICE_HOST but manifest env does not list it
+  ui    src/frontend/GuacamoleApp.tsx:172 plain loading text, use LoadingState
+ok  remote-desktop
+VALIDATE_RC=0
+== pack
+packed remote-desktop-1.4.0.tmxplug
+  size    4716952
+  sha256  5207776df8705e6ba4f4ea9791b8705fad1bb4922f9e7b1bf492385814f559cc
+PACK_RC=0
+
+== 2026-11-11T17:54:07+01:00 MUTATION E: 1b25abe src (reset() approach) with round-3b tests
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  |remote-desktop:frontend| tests/frontend/guacamole-pointer.test.ts > createTouchGestureGate > releases held buttons once, and only when the remote holds one
+ FAIL  |remote-desktop:frontend| tests/frontend/guacamole-pointer.test.ts > bindPointerInput > with the real touchscreen emulator > does not jump the touchpad cursor after a quick pinch
+ FAIL  |remote-desktop:frontend| tests/frontend/guacamole-pointer.test.ts > bindPointerInput > with the real touchscreen emulator > drops the long press of a cancelled pinch
+      Tests  3 failed | 19 passed (22)
+ 2 files changed, 271 insertions(+), 45 deletions(-)
+
+== 2026-11-11T17:54:14+01:00 verify on working tree (1b25abe + round 3b, emulator retire)
+== npm test
+
+ Test Files  71 passed | 1 skipped (72)
+      Tests  607 passed | 1 skipped (608)
+   Start at  17:54:14
+   Duration  8.41s (transform 10.96s, setup 1.14s, import 23.39s, tests 8.56s, environment 14.98s)
+
+TEST_RC=0
+== typecheck
+> tsc -p .
+
+TC_RC=0
+== format:check
+[warn] tests/frontend/guacamole-pointer.test.ts
+[warn] Code style issues found in the above file. Run Prettier with --write to fix.
+FMT_RC=1
+== build
+[patch-guacamole-lite] Already patched
+built remote-desktop
+BUILD_RC=0
+== validate
+  warn  reads KUBERNETES_SERVICE_HOST but manifest env does not list it
+  ui    src/frontend/GuacamoleApp.tsx:172 plain loading text, use LoadingState
+ok  remote-desktop
+VALIDATE_RC=0
+== pack
+packed remote-desktop-1.4.0.tmxplug
+  size    4718770
+  sha256  71460a8c2e0efb89e51fea99d3f62b383c14ac7739cc7e213c423dc78ffacc64
+PACK_RC=0
+== prettier --write tests/frontend/guacamole-pointer.test.ts, re-check
+All matched files use Prettier code style!
+FMT_RC=0
+      Tests  22 passed (22)

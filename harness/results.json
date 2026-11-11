@@ -1,0 +1,303 @@
+{
+ "base": {
+  "S1_pan_states": 0,
+  "S1_pan_presses": 0,
+  "S2_left_states": 8,
+  "S2_drag_moves": 7,
+  "S2_states": [
+   {
+    "t": 1780,
+    "kind": "mouse",
+    "x": 207,
+    "y": 169,
+    "left": true,
+    "right": false,
+    "middle": false
+   },
+   {
+    "t": 1812.7000000029802,
+    "kind": "mouse",
+    "x": 222,
+    "y": 179,
+    "left": true,
+    "right": false,
+    "middle": false
+   },
+   {
+    "t": 1846,
+    "kind": "mouse",
+    "x": 237,
+    "y": 189,
+    "left": true,
+    "right": false,
+    "middle": false
+   },
+   {
+    "t": 1879.4000000059605,
+    "kind": "mouse",
+    "x": 252,
+    "y": 199,
+    "left": true,
+    "right": false,
+    "middle": false
+   },
+   {
+    "t": 1912.7999999970198,
+    "kind": "mouse",
+    "x": 267,
+    "y": 209,
+    "left": true,
+    "right": false,
+    "middle": false
+   },
+   {
+    "t": 1946,
+    "kind": "mouse",
+    "x": 282,
+    "y": 219,
+    "left": true,
+    "right": false,
+    "middle": false
+   },
+   {
+    "t": 1979.2000000029802,
+    "kind": "mouse",
+    "x": 297,
+    "y": 229,
+    "left": true,
+    "right": false,
+    "middle": false
+   },
+   {
+    "t": 2012.9000000059605,
+    "kind": "mouse",
+    "x": 312,
+    "y": 239,
+    "left": true,
+    "right": false,
+    "middle": false
+   },
+   {
+    "t": 2035.5,
+    "kind": "mouse",
+    "x": 312,
+    "y": 239,
+    "left": false,
+    "right": false,
+    "middle": false
+   }
+  ],
+  "S2_raw": [
+   {
+    "src": "touch",
+    "x": 182,
+    "y": 149,
+    "left": false,
+    "right": false,
+    "sup": true
+   },
+   {
+    "src": "touch",
+    "x": 182,
+    "y": 149,
+    "left": true,
+    "right": false,
+    "sup": true
+   },
+   {
+    "src": "touch",
+    "x": 207,
+    "y": 169,
+    "left": true,
+    "right": false,
+    "sup": false
+   },
+   {
+    "src": "touch",
+    "x": 222,
+    "y": 179,
+    "left": true,
+    "right": false,
+    "sup": false
+   },
+   {
+    "src": "touch",
+    "x": 237,
+    "y": 189,
+    "left": true,
+    "right": false,
+    "sup": false
+   },
+   {
+    "src": "touch",
+    "x": 252,
+    "y": 199,
+    "left": true,
+    "right": false,
+    "sup": false
+   },
+   {
+    "src": "touch",
+    "x": 267,
+    "y": 209,
+    "left": true,
+    "right": false,
+    "sup": false
+   },
+   {
+    "src": "touch",
+    "x": 282,
+    "y": 219,
+    "left": true,
+    "right": false,
+    "sup": false
+   },
+   {
+    "src": "touch",
+    "x": 297,
+    "y": 229,
+    "left": true,
+    "right": false,
+    "sup": false
+   },
+   {
+    "src": "touch",
+    "x": 312,
+    "y": 239,
+    "left": true,
+    "right": false,
+    "sup": false
+   },
+   {
+    "src": "touch",
+    "x": 312,
+    "y": 239,
+    "left": false,
+    "right": false,
+    "sup": false
+   }
+  ],
+  "S3_tap_left_presses": 1,
+  "S4_backspace_downs": 1,
+  "S4_backspace_ups": 1,
+  "S5_touchpad_max_jump_px": 1228,
+  "S5_touchpad_states": [
+   {
+    "t": 664.4000000059605,
+    "kind": "mouse",
+    "x": 899,
+    "y": 899,
+    "left": true,
+    "right": false,
+    "middle": false
+   },
+   {
+    "t": 681.9000000059605,
+    "kind": "mouse",
+    "x": 899,
+    "y": 899,
+    "left": false,
+    "right": false,
+    "middle": false
+   }
+  ],
+  "S6_cancel_right_clicks": 1,
+  "S6_states": [
+   {
+    "t": 533.3999999910593,
+    "kind": "mouse",
+    "x": 80,
+    "y": 53,
+    "left": false,
+    "right": false,
+    "middle": false
+   },
+   {
+    "t": 533.5,
+    "kind": "mouse",
+    "x": 80,
+    "y": 53,
+    "left": false,
+    "right": true,
+    "middle": false
+   },
+   {
+    "t": 533.5999999940395,
+    "kind": "mouse",
+    "x": 80,
+    "y": 53,
+    "left": false,
+    "right": false,
+    "middle": false
+   }
+  ]
+ },
+ "branch": {
+  "S1_pan_states": 0,
+  "S1_pan_presses": 0,
+  "S2_left_states": 0,
+  "S2_drag_moves": 0,
+  "S2_states": [],
+  "S2_raw": [
+   {
+    "src": "touch",
+    "x": 182,
+    "y": 149,
+    "left": false,
+    "right": false,
+    "sup": true
+   },
+   {
+    "src": "touch",
+    "x": 182,
+    "y": 149,
+    "left": true,
+    "right": false,
+    "sup": true
+   },
+   {
+    "src": "touch",
+    "x": 182,
+    "y": 149,
+    "left": false,
+    "right": false,
+    "sup": true
+   }
+  ],
+  "S3_tap_left_presses": 1,
+  "S4_backspace_downs": 6,
+  "S4_backspace_ups": 6,
+  "S5_touchpad_max_jump_px": 1,
+  "S5_touchpad_states": [
+   {
+    "t": 651.2999999970198,
+    "kind": "mouse",
+    "x": 293,
+    "y": 292,
+    "left": false,
+    "right": false,
+    "middle": false
+   },
+   {
+    "t": 669,
+    "kind": "mouse",
+    "x": 293,
+    "y": 292,
+    "left": true,
+    "right": false,
+    "middle": false
+   },
+   {
+    "t": 919.2999999970198,
+    "kind": "mouse",
+    "x": 293,
+    "y": 292,
+    "left": false,
+    "right": false,
+    "middle": false
+   }
+  ],
+  "S6_cancel_right_clicks": 0,
+  "S6_states": []
+ }
+}
