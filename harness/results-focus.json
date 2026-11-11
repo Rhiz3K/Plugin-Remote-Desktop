@@ -1,0 +1,42 @@
+{
+ "base": {
+  "final_active": "display",
+  "log": [
+   {
+    "t": 32,
+    "what": "mouse press sent",
+    "active": "display"
+   },
+   {
+    "t": 141,
+    "what": "toolbar: Show keyboard",
+    "active": "keyboard textarea"
+   },
+   {
+    "t": 282,
+    "what": "mouse release sent",
+    "active": "display"
+   }
+  ]
+ },
+ "branch": {
+  "final_active": "kbd",
+  "log": [
+   {
+    "t": 39,
+    "what": "mouse press sent",
+    "active": "display"
+   },
+   {
+    "t": 145,
+    "what": "toolbar: Show keyboard",
+    "active": "keyboard textarea"
+   },
+   {
+    "t": 289,
+    "what": "mouse release sent",
+    "active": "keyboard textarea"
+   }
+  ]
+ }
+}

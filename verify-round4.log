@@ -1,0 +1,81 @@
+== 2026-11-11T20:31:40+01:00 BASE CHECK: d5a9ac9 GuacamoleDisplay.tsx with the new focus test
+     × keeps the soft keyboard focused through a tap's delayed release 118ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  |remote-desktop:frontend| tests/frontend/GuacamoleDisplay-focus.test.tsx > GuacamoleDisplay focus > keeps the soft keyboard focused through a tap's delayed release
+AssertionError: expected <div tabindex="0" …(1)></div> to be <textarea …(9)></textarea> // Object.is equality
+- Expected
++ Received
+      Tests  1 failed | 2 passed (3)
+ M src/frontend/GuacamoleDisplay.tsx
+?? tests/frontend/GuacamoleDisplay-focus.test.tsx
+
+== 2026-11-11T20:31:43+01:00 verify on working tree (d5a9ac9 + round 4)
+== npm test
+
+ Test Files  72 passed | 1 skipped (73)
+      Tests  610 passed | 1 skipped (611)
+   Start at  20:31:44
+   Duration  8.34s (transform 8.46s, setup 972ms, import 24.88s, tests 8.73s, environment 14.38s)
+
+TEST_RC=0
+== typecheck
+> tsc -p .
+
+TC_RC=0
+== format:check
+Checking formatting...
+All matched files use Prettier code style!
+FMT_RC=0
+== build
+[patch-guacamole-lite] Already patched
+built remote-desktop
+BUILD_RC=0
+== validate
+  warn  reads KUBERNETES_SERVICE_HOST but manifest env does not list it
+  ui    src/frontend/GuacamoleApp.tsx:172 plain loading text, use LoadingState
+ok  remote-desktop
+VALIDATE_RC=0
+== pack
+packed remote-desktop-1.4.0.tmxplug
+  size    4719178
+  sha256  5eafc36232e21453c403743740da9c96e7465bb039c3a3eeb1ee74b2d36769e7
+PACK_RC=0
+
+== 2026-11-11T20:38:42+01:00 BASE CHECK: 5398285 GuacamoleDisplay.tsx with the new ownership tests
+     × ignores a finger resting outside the display 81ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  1 failed | 4 passed (5)
+ M src/frontend/GuacamoleDisplay.tsx
+ M tests/frontend/GuacamoleDisplay-focus.test.tsx
+
+== 2026-11-11T20:38:46+01:00 verify on working tree (5398285 + touch ownership)
+== npm test
+
+ Test Files  72 passed | 1 skipped (73)
+      Tests  612 passed | 1 skipped (613)
+   Start at  20:38:47
+   Duration  7.82s (transform 8.36s, setup 1.10s, import 20.83s, tests 8.22s, environment 14.60s)
+
+TEST_RC=0
+== typecheck
+> tsc -p .
+
+TC_RC=0
+== format:check
+Checking formatting...
+All matched files use Prettier code style!
+FMT_RC=0
+== build
+[patch-guacamole-lite] Already patched
+built remote-desktop
+BUILD_RC=0
+== validate
+  warn  reads KUBERNETES_SERVICE_HOST but manifest env does not list it
+  ui    src/frontend/GuacamoleApp.tsx:172 plain loading text, use LoadingState
+ok  remote-desktop
+VALIDATE_RC=0
+== pack
+packed remote-desktop-1.4.0.tmxplug
+  size    4719818
+  sha256  ab52c15968733eff1bc0e939165fdc80d62fc5e6ecb1bc4c354a3737bcd449ff
+PACK_RC=0
